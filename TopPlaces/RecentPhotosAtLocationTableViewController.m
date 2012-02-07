@@ -1,28 +1,28 @@
 //
-//  PlacesListTableViewController.m
+//  RecentPhotosAtLocationTableViewController.m
 //  TopPlaces
 //
-//  Created by Timothée Boucher on 2/5/12.
+//  Created by Timothée Boucher on 2/6/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "PlacesListTableViewController.h"
 #import "RecentPhotosAtLocationTableViewController.h"
 #import "FlickrFetcher.h"
 
-@interface PlacesListTableViewController()
-@property (nonatomic, strong) NSArray *topPlaces;
+@interface RecentPhotosAtLocationTableViewController()
+@property (nonatomic, strong) NSArray *photos;
 @end
 
-@implementation PlacesListTableViewController
+@implementation RecentPhotosAtLocationTableViewController
 
-@synthesize topPlaces = _topPlaces;
+@synthesize location = _location;
+@synthesize photos = _photos;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-
+        // Custom initialization
     }
     return self;
 }
@@ -35,27 +35,17 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"See Photo For Location"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-        RecentPhotosAtLocationTableViewController *destinationController = (RecentPhotosAtLocationTableViewController *)segue.destinationViewController;
-        destinationController.location = [self.topPlaces objectAtIndex:indexPath.row];
-    }
-}
-
 #pragma mark - View lifecycle
+
+#define MAX_PHOTOS 50
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSMutableArray *topPlaces = [[FlickrFetcher topPlaces] mutableCopy];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_content" ascending:YES];
-    
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        
-    self.topPlaces = [topPlaces sortedArrayUsingDescriptors:sortDescriptors];
-    
+
+    self.photos = [FlickrFetcher photosInPlace:self.location maxResults:MAX_PHOTOS];
+    NSString *locationName = [self.location objectForKey:@"_content"];
+    self.title = [[locationName componentsSeparatedByString:@", "] objectAtIndex:0];
 }
 
 - (void)viewDidUnload
@@ -102,25 +92,31 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.topPlaces count];
+    return [self.photos count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Top Place Cell";
+    static NSString *CellIdentifier = @"Photo Info Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    NSDictionary *topPlace = [self.topPlaces objectAtIndex:indexPath.row];
-    NSString *longCityName = [topPlace objectForKey:@"_content"];
+    NSLog(@"%@", [self.photos objectAtIndex:indexPath.row]);
+    NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
     
-    NSArray *splitName = [longCityName componentsSeparatedByString:@", "];
+    NSString *title = [photo objectForKey:@"title"];
+    NSString *description = [[photo objectForKey:@"description"] objectForKey:@"_content"];
     
-    cell.textLabel.text = [splitName objectAtIndex:0];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [splitName componentsJoinedByString:@", "]];
+    if ([title isEqualToString:@""]) {
+        title = description;
+        description = @"";
+    }
+    if ([title isEqualToString:@""]) title = @"Unknown";
+    cell.textLabel.text = title;
+    cell.detailTextLabel.text = description;
     
     return cell;
 }

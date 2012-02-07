@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2255443014E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2255442F14E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m */; };
 		22A3D5B314DEF0770050C5ED /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A3D5B214DEF0770050C5ED /* UIKit.framework */; };
 		22A3D5B514DEF0770050C5ED /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A3D5B414DEF0770050C5ED /* Foundation.framework */; };
 		22A3D5B714DEF0770050C5ED /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A3D5B614DEF0770050C5ED /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2255442E14E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentPhotosAtLocationTableViewController.h; sourceTree = "<group>"; };
+		2255442F14E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentPhotosAtLocationTableViewController.m; sourceTree = "<group>"; };
 		22A3D5AE14DEF0770050C5ED /* TopPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TopPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A3D5B214DEF0770050C5ED /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		22A3D5B414DEF0770050C5ED /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -93,6 +96,8 @@
 				22A3D5CB14DEF1E30050C5ED /* TopPlaces iPad.storyboard */,
 				22A3D5D214DEF3C50050C5ED /* PlacesListTableViewController.h */,
 				22A3D5D314DEF3C50050C5ED /* PlacesListTableViewController.m */,
+				2255442E14E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.h */,
+				2255442F14E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m */,
 				22A3D5D514DF309F0050C5ED /* RecentlyViewedTableViewController.h */,
 				22A3D5D614DF309F0050C5ED /* RecentlyViewedTableViewController.m */,
 				22A3D5B914DEF0770050C5ED /* Supporting Files */,
@@ -189,6 +194,7 @@
 				22A3D5D114DEF2EC0050C5ED /* FlickrFetcher.m in Sources */,
 				22A3D5D414DEF3C50050C5ED /* PlacesListTableViewController.m in Sources */,
 				22A3D5D714DF309F0050C5ED /* RecentlyViewedTableViewController.m in Sources */,
+				2255443014E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +300,7 @@
 				22A3D5C814DEF0770050C5ED /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
