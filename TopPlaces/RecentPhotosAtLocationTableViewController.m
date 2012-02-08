@@ -42,10 +42,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    self.photos = [FlickrFetcher photosInPlace:self.location maxResults:MAX_PHOTOS];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner startAnimating];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+    
     NSString *locationName = [self.location objectForKey:@"_content"];
     self.title = [[locationName componentsSeparatedByString:@", "] objectAtIndex:0];
+
+    dispatch_queue_t fetchPhotoInfoQueue = dispatch_queue_create("fetchPhotos", NULL);
+    dispatch_async(fetchPhotoInfoQueue, ^{
+        self.photos = [FlickrFetcher photosInPlace:self.location maxResults:MAX_PHOTOS];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.navigationItem.rightBarButtonItem = nil;
+            [self.tableView reloadData];
+        });
+    });
+    dispatch_release(fetchPhotoInfoQueue);
 }
 
 - (void)viewDidUnload
