@@ -48,14 +48,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSMutableArray *topPlaces = [[FlickrFetcher topPlaces] mutableCopy];
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_content" ascending:YES];
-    
-    NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
-        
-    self.topPlaces = [topPlaces sortedArrayUsingDescriptors:sortDescriptors];
-    
 }
 
 - (void)viewDidUnload
@@ -68,6 +60,25 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    UIActivityIndicatorView *spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [spinner startAnimating];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+        
+    dispatch_queue_t fetchTopPlacesQueue = dispatch_queue_create("fetchTopPlaces", NULL);
+    dispatch_async(fetchTopPlacesQueue, ^{
+        NSMutableArray *topPlaces = [[FlickrFetcher topPlaces] mutableCopy];
+        NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"_content" ascending:YES];
+        
+        NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
+        
+        self.topPlaces = [topPlaces sortedArrayUsingDescriptors:sortDescriptors];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.navigationItem.rightBarButtonItem = nil;
+            [self.tableView reloadData];
+        });
+    });
+    dispatch_release(fetchTopPlacesQueue);
 }
 
 - (void)viewDidAppear:(BOOL)animated
