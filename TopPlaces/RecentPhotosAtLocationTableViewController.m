@@ -8,6 +8,7 @@
 
 #import "RecentPhotosAtLocationTableViewController.h"
 #import "FlickrFetcher.h"
+#import "FlickrPhotoDetailViewController.h"
 
 @interface RecentPhotosAtLocationTableViewController()
 @property (nonatomic, strong) NSArray *photos;
@@ -33,6 +34,13 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"View Flick Photo"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        [segue.destinationViewController setPhotoInformation:[self.photos objectAtIndex:indexPath.row]];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -91,7 +99,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 #pragma mark - Table view data source
@@ -121,7 +129,7 @@
     NSDictionary *photo = [self.photos objectAtIndex:indexPath.row];
     
     NSString *title = [photo objectForKey:@"title"];
-    NSString *description = [[photo objectForKey:@"description"] objectForKey:@"_content"];
+    NSString *description = [photo valueForKeyPath:@"description._content"];
     
     if ([title isEqualToString:@""]) {
         title = description;
