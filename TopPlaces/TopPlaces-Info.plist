@@ -29,7 +29,7 @@
 	<key>UIMainStoryboardFile</key>
 	<string>TopPlaces iPhone</string>
 	<key>UIMainStoryboardFile~ipad</key>
-	<string>TopPlaces iPad</string>
+	<string>TopPlaces iPhone</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -47,5 +47,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackTranslucent</string>
 </dict>
 </plist>

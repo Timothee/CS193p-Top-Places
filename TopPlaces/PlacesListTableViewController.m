@@ -98,8 +98,11 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+}
+
+-(BOOL)wantsFullScreenLayout {
+    return YES;
 }
 
 #pragma mark - Table view data source

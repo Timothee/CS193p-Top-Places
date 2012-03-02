@@ -20,6 +20,7 @@
 		22A3D5D114DEF2EC0050C5ED /* FlickrFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A3D5D014DEF2EC0050C5ED /* FlickrFetcher.m */; };
 		22A3D5D414DEF3C50050C5ED /* PlacesListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A3D5D314DEF3C50050C5ED /* PlacesListTableViewController.m */; };
 		22A3D5D714DF309F0050C5ED /* RecentlyViewedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22A3D5D614DF309F0050C5ED /* RecentlyViewedTableViewController.m */; };
+		3BE7945F15004B95003273B5 /* RotatableUITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BE7945E15004B95003273B5 /* RotatableUITabBarController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,8 @@
 		22A3D5D314DEF3C50050C5ED /* PlacesListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlacesListTableViewController.m; sourceTree = "<group>"; };
 		22A3D5D514DF309F0050C5ED /* RecentlyViewedTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentlyViewedTableViewController.h; sourceTree = "<group>"; };
 		22A3D5D614DF309F0050C5ED /* RecentlyViewedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentlyViewedTableViewController.m; sourceTree = "<group>"; };
+		3BE7945D15004B95003273B5 /* RotatableUITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableUITabBarController.h; sourceTree = "<group>"; };
+		3BE7945E15004B95003273B5 /* RotatableUITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableUITabBarController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +98,8 @@
 				22A3D5CD14DEF2EC0050C5ED /* FlickrFetcher */,
 				22A3D5C114DEF0770050C5ED /* TopPlacesAppDelegate.h */,
 				22A3D5C214DEF0770050C5ED /* TopPlacesAppDelegate.m */,
+				3BE7945D15004B95003273B5 /* RotatableUITabBarController.h */,
+				3BE7945E15004B95003273B5 /* RotatableUITabBarController.m */,
 				22A3D5C914DEF1CD0050C5ED /* TopPlaces iPhone.storyboard */,
 				22A3D5CB14DEF1E30050C5ED /* TopPlaces iPad.storyboard */,
 				22A3D5D214DEF3C50050C5ED /* PlacesListTableViewController.h */,
@@ -201,6 +206,7 @@
 				22A3D5D714DF309F0050C5ED /* RecentlyViewedTableViewController.m in Sources */,
 				2255443014E0E60A00EC91E7 /* RecentPhotosAtLocationTableViewController.m in Sources */,
 				2255443814E391B600EC91E7 /* FlickrPhotoDetailViewController.m in Sources */,
+				3BE7945F15004B95003273B5 /* RotatableUITabBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
